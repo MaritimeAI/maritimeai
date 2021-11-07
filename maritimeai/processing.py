@@ -10,6 +10,8 @@ import numpy as np
 
 from osgeo import gdal
 
+from .debug import sizemem
+
 
 def process_sentinel1(filename, path_output, area=None, shapes=None, srs=None,
                       ratio=False, negative=False, raw=False):
@@ -72,6 +74,7 @@ def process_sentinel1(filename, path_output, area=None, shapes=None, srs=None,
                         else:
                             memoset = driver_mem.CreateCopy('', source, 0)
                             # Work with in-memory dataset only
+                            print("Size of memoset =", sizemem(memoset))
                             band = memoset.GetRasterBand(1)
                             image = band.ReadAsArray()
                             mask = image == 0
