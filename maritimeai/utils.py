@@ -3,6 +3,8 @@ from typing import Tuple, Union
 import cv2 as cv
 import numpy as np
 
+from matplotlib import pyplot as plt
+
 
 class GDALCallback:
     def __init__(self):
@@ -21,6 +23,29 @@ class GDALCallback:
                 print('.', end='', flush=True)
             self.progress += 1
         return True
+
+
+def draw_one_row(*images, size=1024, output=None):
+    try:
+        size = size[:2] if len(size) >= 2 else size * 2
+        size = tuple(map(int, size))
+    except:
+        size = (int(size), int(size))
+    count = len(images)
+    figure, axes = plt.subplots(1, count, dpi=72,
+                                figsize=(size[0] / 72, size[1] / 72))
+    for i in range(count):
+        if i:
+            axes[i].imshow(images[i], cmap='gray', vmin=0, vmax=1)
+        else:
+            axes[i].imshow(images[i])
+    if output is not None:
+        try:
+            mkdir(osp.dirname(output), exist_ok=True)
+            plt.savefig(output)
+        except:
+            pass
+    plt.show()
 
 def adjust_gamma(image: np.ndarray, gamma: float = 1.1,
                  pad: Union[int, Tuple[int, int]] = 1) -> np.ndarray:
