@@ -47,6 +47,9 @@ def draw_one_row(*images, size=1024, output=None):
             pass
     plt.show()
 
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
 def adjust_gamma(image: np.ndarray, gamma: float = 1.1,
                  pad: Union[int, Tuple[int, int]] = 1) -> np.ndarray:
     assert image.ndim == 2, f"Input image must be grayscale!"
