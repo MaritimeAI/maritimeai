@@ -1,3 +1,4 @@
+from os import makedirs as mkdir
 from typing import Tuple, Union
 
 import cv2 as cv
