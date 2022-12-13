@@ -10,8 +10,8 @@ setup(
     author_email='0x05a4@gmail.com',
     description='MaritimeAI collection of functions',
     install_requires=[
-        'gdal>=3.0.4',
-        'opencv-python',
-        'numpy'
+        # 'gdal>=3.0.4',
+        # 'opencv-python',
+        # 'numpy'
     ]
 )
