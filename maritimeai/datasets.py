@@ -23,7 +23,7 @@ class DatasetBase(Dataset):
                  invert=True, empty=False):
         # Assert images paths
         if isinstance(paths_images, str):
-            paths_images = (paths_images, path_images)
+            paths_images = (paths_images, paths_images)
         elif not isinstance(paths_images, (tuple, list, set)):
             raise TypeError("first argument must be of type str or list!")
         else:
